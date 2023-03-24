@@ -6,7 +6,8 @@ function getComputerChoice(){
     return choiceRPS[choiceNum];
 }
 
-//Function to collect and validate user input for rock paper scissors
+//Function to collect and validate user input for rock paper scissors - (NOT USED IN UI/UX VERSION SINCE INPUT IS NOT FREE TEEXT)
+/*
 function RPSInput(){
     let j = 0;
     let playerSelection = prompt("Rock, Paper, or Scissors?");
@@ -21,27 +22,33 @@ function RPSInput(){
     }
     return playerSelection;
 }
+*/
 
 //Function to play one round of RPS
 function playRound(playerSelection, computerSelection){
     let result = " ";
-    let score = 2;
+    let win = document.getElementById("win").innerHTML;
+    let lose = document.getElementById("lose").innerHTML;
+    let tie = document.getElementById("tie").innerHTML;
+
     if(playerSelection === computerSelection){
-        result = "Tie Game Try Again";
+        result = `You picked ${playerSelection}, </br> Computer picked ${computerSelection}, </br> Tie Game This Round`
+        document.getElementById("tie").innerHTML = `${Number(tie)+1}`;
     } else if ((playerSelection === "rock" && computerSelection === "paper")
             || (playerSelection === "paper" && computerSelection === "scissors")
             || (playerSelection === "scissors" && computerSelection === "rock")){
-        result = "You Lose - Computer Wins";
-        score = 1;
+                result = `You picked ${playerSelection}, </br> Computer picked ${computerSelection}, </br> You lose this round`
+        document.getElementById("lose").innerHTML = `${Number(lose)+1}`;
     } else{
-        result = "You Win!!";
-        score = 0;
+        result = `You picked ${playerSelection}, </br> Computer picked ${computerSelection}, </br> You win this round!!`
+        document.getElementById("win").innerHTML = `${Number(win)+1}`;
     }
-    console.log(result);
-    return score;
+    document.getElementById("roundOutcome").innerHTML = `${result}`;
+   // return score;
 }
 
 //Function to play 5 rounds of RPS
+/*
 function game(){
     let score = [0 , 0, 0];
     let output = 3;
@@ -64,5 +71,5 @@ function game(){
 
 
 console.log(game());
-
+*/
 

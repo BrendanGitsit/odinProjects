@@ -9,6 +9,68 @@
     <script src="scropt.js"> </script>
 </head>
 <body>
-    
+    <div class="nav">Rock Paper Scissors e-Trainer</div>
+    <div id = "content">
+        <h2>Please Make Your Selection</h2>
+        <div id = "buttons">
+            <button id ="rock"><img src= "img/rock.png">ROCK</button>
+            <button id ="paper"><img src="img/paper.png">PAPER</button>
+            <button id ="scissors"><img src="img/scissor.png">SCISSORS</button>
+        </div>
+        <div class = "response">
+            <p id = "roundOutcome">No game has been played yet</p>
+            <p class = "tallyTitle">Game Score</p>
+            <table class = "results">
+                <tr>
+                    <th>Win</th>
+                    <th>Lose</th>
+                    <th>Tie</th>
+                </tr>
+                <tr>
+                    <td id ="win">0</td>
+                    <td id = "lose">0</td>
+                    <td id = "tie">0</td>
+                </tr>
+            </table>
+            <h3 id = "fiveGame"></h3>
+        </div>
+    </div>
+<script>
+    const rock = document.getElementById("rock");
+    const paper = document.getElementById("paper");
+    const scissors = document.getElementById("scissors");
+    const buttons = document.getElementById("buttons");
+    let buttonClicks = 0;
+    const img = document.createElement("img");
+    img.src = "img/fireworks.gif";
+    rock.addEventListener("click",function(){
+        playRound("rock", getComputerChoice());
+    });
+    paper.addEventListener("click",function(){
+        playRound("paper", getComputerChoice());
+    });
+    scissors.addEventListener("click",function(){
+        playRound("scissors", getComputerChoice());
+    });
+    buttons.addEventListener("click",function(){
+        buttonClicks = buttonClicks+1;
+        if(buttonClicks>=5){
+            const win = Number(document.getElementById("win").innerHTML);
+            const lose = Number(document.getElementById("lose").innerHTML);
+            const tie= Number(document.getElementById("tie").innerHTML);
+            if(win > lose){
+                document.getElementById("fiveGame").innerHTML = `You won best of ${buttonClicks} games!`;
+                document.getElementById("content").appendChild(img);
+            } else if (lose > win){
+                document.getElementById("fiveGame").innerHTML = `You lose - best of ${buttonClicks} games`;
+                document.getElementById("content").removeChild(img);
+            } else{
+                document.getElementById("fiveGame").innerHTML = `After ${buttonClicks} games, you are tied`;
+                document.getElementById("content").removeChild(img);
+            };
+        };
+    })
+</script>
+
 </body>
 </html>
